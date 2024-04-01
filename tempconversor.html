@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Temperatura</title>
+</head>
+<body>
+    <label for="escalaAtual">Escala atual:</label>
+    <select id="escalaAtual">
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit</option>
+        <option value="K">Kelvin</option>
+    </select>
+
+    <label for="temperatura">Temperatura:</label>
+    <input type="number" id="temperatura">
+    
+    <button onclick="converterTemperatura()">Converter</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function converterTemperatura() {
+            let escala = document.getElementById("escalaAtual").value;
+            let temperatura = parseFloat(document.getElementById("temperatura").value);
+            let resultado = document.getElementById("resultado");
+
+            if (isNaN(temperatura)) {
+                resultado.innerHTML = "Por favor, insira um valor válido.";
+                return;
+            }
+
+            let convertedTemperature;
+
+            switch (escala) {
+                case "C":
+                    convertedTemperature = temperatura;
+                    resultado.innerHTML = "Temperatura em Celsius: " + convertedTemperature + "°C";
+                    break;
+                case "F":
+                    convertedTemperature = (temperatura * 9/5) + 32;
+                    resultado.innerHTML = "Temperatura em Fahrenheit: " + convertedTemperature + "°F";
+                    break;
+                case "K":
+                    convertedTemperature = temperatura + 273.15;
+                    resultado.innerHTML = "Temperatura em Kelvin: " + convertedTemperature + "K";
+                    break;
+                default:
+                    resultado.innerHTML = "Escala de temperatura inválida.";
+            }
+        }
+    </script>
+</body>
+</html>
